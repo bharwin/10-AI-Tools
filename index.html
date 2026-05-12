@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 AI Tools yang Wajib Dikuasai Contract Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink-soft: #2d3245;
+    --gold: #c8963e;
+    --gold-light: #f0d49a;
+    --teal: #1e6b6b;
+    --teal-light: #d4eeee;
+    --cream: #faf7f2;
+    --cream-dark: #f0ebe0;
+    --white: #ffffff;
+    --rule: rgba(200,150,62,0.35);
+    --shadow: 0 8px 48px rgba(15,17,23,0.12);
+    --shadow-sm: 0 2px 12px rgba(15,17,23,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; page-break-after: always; margin: 0; border-radius: 0; }
+    .no-print { display: none; }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e0d4;
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVIGATION ── */
+  .top-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--ink); color: var(--gold-light);
+    padding: 10px 32px; display: flex; align-items: center; gap: 24px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.05em;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  }
+  .top-bar span { opacity: 0.5; }
+  .top-bar a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+  .top-bar a:hover { opacity: 0.75; }
+
+  /* ── LAYOUT ── */
+  .wrapper {
+    max-width: 900px; margin: 72px auto 80px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .page {
+    background: var(--cream);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding: 64px 72px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% -10%, rgba(200,150,62,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at -10% 80%, rgba(30,107,107,0.3) 0%, transparent 60%);
+  }
+
+  .cover-grid {
+    position: absolute; inset: 0; opacity: 0.05;
+    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .cover-content { position: relative; z-index: 2; padding-top: 60px; }
+
+  .cover-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(200,150,62,0.4);
+    padding: 6px 16px; border-radius: 100px;
+    color: var(--gold); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 40px;
+    background: rgba(200,150,62,0.08);
+  }
+
+  .cover-badge::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); display: block;
+  }
+
+  .cover-eyebrow {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 24px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-size: 18px; font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 64px;
+  }
+
+  .cover-divider {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 32px;
+  }
+
+  .cover-stats {
+    display: flex; gap: 48px;
+    margin-bottom: 80px;
+  }
+
+  .cover-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; color: var(--gold);
+    line-height: 1;
+  }
+  .cover-stat-label {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+  }
+
+  .cover-author {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+    display: flex; align-items: center; gap: 16px;
+    position: relative; z-index: 2;
+  }
+
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+
+  .author-info { color: rgba(255,255,255,0.7); font-size: 14px; }
+  .author-name { font-weight: 600; color: white; font-size: 15px; }
+
+  .cover-year {
+    position: absolute; top: 48px; right: 72px;
+    font-size: 13px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.25); font-weight: 500;
+    z-index: 2;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    background: var(--ink);
+    padding: 64px 72px;
+    position: relative; overflow: hidden;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--teal) 100%);
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 16px; opacity: 0.8;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900; color: white;
+    line-height: 1.15;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── BODY CONTENT ── */
+  .body-content { padding: 64px 72px; }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc-page { background: var(--cream); }
+  .toc-header {
+    background: var(--teal);
+    padding: 48px 72px;
+    position: relative; overflow: hidden;
+  }
+  .toc-header::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+  }
+  .toc-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900; color: white;
+    line-height: 1.1;
+  }
+
+  .toc-body { padding: 56px 72px; }
+
+  .toc-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 16px; margin-top: 40px;
+  }
+  .toc-section-label:first-child { margin-top: 0; }
+
+  .toc-item {
+    display: flex; align-items: baseline; gap: 0;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+
+  .toc-item a {
+    display: flex; align-items: baseline; gap: 0; width: 100%;
+    text-decoration: none; color: inherit;
+    transition: color .2s;
+  }
+  .toc-item a:hover .toc-item-title { color: var(--teal); }
+
+  .toc-item-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--gold);
+    width: 36px; flex-shrink: 0; font-weight: 500;
+  }
+
+  .toc-item-title {
+    font-size: 15px; font-weight: 500;
+    color: var(--ink); flex: 1;
+    transition: color .2s;
+  }
+
+  .toc-item-dots {
+    flex: 1; border-bottom: 1.5px dotted rgba(200,150,62,0.3);
+    margin: 0 12px; min-width: 20px; align-self: center; height: 0;
+  }
+
+  .toc-item-page {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--ink-soft); font-weight: 500;
+    flex-shrink: 0; width: 28px; text-align: right;
+  }
+
+  .toc-item.highlight .toc-item-title { font-weight: 600; color: var(--teal); }
+  .toc-item.highlight .toc-item-num { color: var(--teal); }
+
+  /* ── FOREWORD / INTRO ── */
+  .intro-hook {
+    background: linear-gradient(135deg, var(--teal) 0%, #0d4444 100%);
+    padding: 64px 72px;
+    position: relative; overflow: hidden;
+  }
+
+  .hook-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-style: italic; font-weight: 700;
+    color: white;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+
+  .hook-quote::before {
+    content: '\201C';
+    font-size: 120px; line-height: 1;
+    position: absolute; top: -20px; left: -20px;
+    color: rgba(255,255,255,0.08);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .hook-caption {
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    letter-spacing: 0.05em; font-weight: 400;
+  }
+
+  .hook-accent {
+    position: absolute; top: 0; right: 0;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,150,62,0.2), transparent 70%);
+    transform: translate(30%, -30%);
+  }
+
+  .intro-body { padding: 64px 72px; }
+
+  .intro-lead {
+    font-size: 20px; font-weight: 300;
+    color: var(--ink-soft); line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  .intro-lead strong { color: var(--ink); font-weight: 600; }
+
+  .stat-highlight {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: white;
+    padding: 4px 14px; border-radius: 4px;
+    font-weight: 700; font-size: 18px;
+  }
+
+  .callout-box {
+    border-left: 4px solid var(--gold);
+    background: var(--cream-dark);
+    padding: 24px 28px;
+    border-radius: 0 8px 8px 0;
+    margin: 32px 0;
+  }
+
+  .callout-box p {
+    font-size: 15px; color: var(--ink-soft);
+    line-height: 1.7; margin: 0;
+  }
+
+  .callout-box strong { color: var(--ink); }
+
+  /* ── CHAPTER CARDS (Tool pages) ── */
+  .tool-page .tool-header {
+    padding: 56px 72px 40px;
+    border-bottom: 1px solid var(--cream-dark);
+    position: relative;
+  }
+
+  .tool-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 96px; font-weight: 900;
+    color: rgba(200,150,62,0.1);
+    position: absolute; top: 24px; right: 64px;
+    line-height: 1; user-select: none;
+    font-style: italic;
+  }
+
+  .tool-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold); color: white;
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+
+  .tool-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900; color: var(--ink);
+    line-height: 1.1; margin-bottom: 12px;
+  }
+
+  .tool-tagline {
+    font-size: 16px; color: var(--ink-soft);
+    font-weight: 400; max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .tool-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--teal);
+    text-decoration: none; font-weight: 500;
+    transition: opacity .2s;
+  }
+
+  .tool-link:hover { opacity: 0.7; }
+  .tool-link::before { content: '→'; }
+
+  .tool-body { padding: 40px 72px 56px; }
+
+  /* ── FEATURE GRID ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .feature-item {
+    background: white;
+    border: 1px solid rgba(200,150,62,0.2);
+    border-radius: 8px;
+    padding: 20px 18px;
+    transition: box-shadow .2s, border-color .2s;
+  }
+
+  .feature-item:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--gold);
+  }
+
+  .feature-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .feature-label { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+  /* ── PROMPT EXAMPLES ── */
+  .prompt-card {
+    background: var(--ink);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .prompt-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .prompt-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+  }
+
+  .prompt-result {
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+
+  /* ── BENEFIT TAGS ── */
+  .benefit-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin: 24px 0;
+  }
+
+  .benefit-tag {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--teal-light); color: var(--teal);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 13px; font-weight: 600;
+  }
+
+  .benefit-tag::before { content: '✓'; }
+
+  /* ── WORKFLOW SECTION ── */
+  .workflow-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    margin: 32px 0;
+  }
+
+  .workflow-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .workflow-card-header {
+    padding: 20px 24px;
+    font-weight: 700; font-size: 15px;
+    color: white; letter-spacing: 0.03em;
+  }
+
+  .workflow-card-header.pre { background: var(--teal); }
+  .workflow-card-header.post { background: var(--ink); }
+
+  .workflow-card-body { padding: 20px 24px; }
+  .workflow-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 12px; font-size: 14px; color: var(--ink-soft);
+  }
+  .workflow-item::before {
+    content: '→'; color: var(--gold); font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── COMBINATION CARDS ── */
+  .combo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 32px 0; }
+
+  .combo-card {
+    background: white; border-radius: 10px;
+    border: 1.5px solid rgba(200,150,62,0.2);
+    padding: 28px 22px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .combo-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold);
+    font-weight: 700; letter-spacing: 0.1em;
+    margin-bottom: 12px; text-transform: uppercase;
+  }
+
+  .combo-tools {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--ink); margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .combo-plus {
+    color: var(--gold); font-style: italic;
+  }
+
+  .combo-desc {
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 40px 0; }
+
+  .roadmap-week {
+    padding: 28px 24px;
+    border-right: 1px solid rgba(200,150,62,0.2);
+    position: relative;
+  }
+
+  .roadmap-week:last-child { border-right: none; }
+  .roadmap-week::before {
+    content: '';
+    position: absolute; top: 0; left: 24px;
+    width: 40px; height: 3px;
+    background: var(--gold);
+  }
+
+  .week-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px; margin-top: 16px;
+  }
+
+  .week-tools { list-style: none; }
+  .week-tools li {
+    font-size: 14px; color: var(--ink-soft);
+    padding: 6px 0; border-bottom: 1px solid rgba(200,150,62,0.12);
+    font-weight: 500;
+  }
+  .week-tools li:last-child { border-bottom: none; }
+
+  /* ── SKILLS SECTION ── */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    margin: 28px 0;
+  }
+
+  .skill-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; padding: 18px 20px;
+    border-radius: 8px; border: 1px solid rgba(200,150,62,0.15);
+  }
+
+  .skill-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--gold), #e8aa50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+
+  .skill-text { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+  /* ── BONUS / PROMPTS ── */
+  .prompt-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .prompt-block {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(200,150,62,0.2);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prompt-block-header {
+    background: var(--cream-dark);
+    padding: 12px 20px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); border-bottom: 1px solid rgba(200,150,62,0.2);
+  }
+
+  .prompt-block-body {
+    padding: 18px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.75; background: white;
+  }
+
+  /* ── CLOSING ── */
+  .closing-page { background: var(--ink); color: white; }
+  .closing-body { padding: 72px 72px; }
+
+  .closing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900; line-height: 1.1;
+    color: white; margin-bottom: 32px;
+  }
+
+  .closing-headline em { font-style: italic; color: var(--gold); }
+
+  .closing-text {
+    font-size: 17px; font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8; max-width: 580px;
+    margin-bottom: 48px;
+  }
+
+  .closing-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
+  .closing-pill {
+    display: flex; align-items: center; gap: 8px;
+    border: 1.5px solid rgba(200,150,62,0.4);
+    padding: 10px 20px; border-radius: 100px;
+    font-size: 14px; font-weight: 600;
+    color: var(--gold-light);
+  }
+  .closing-pill::before { content: '✦'; font-size: 10px; }
+
+  .closing-footer {
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .closing-footer-left { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .closing-footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    max-width: 320px; line-height: 1.3;
+  }
+
+  /* ── TYPOGRAPHY UTILS ── */
+  h3.body-h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 16px; margin-top: 40px;
+  }
+  h3.body-h3:first-child { margin-top: 0; }
+
+  p.body-p {
+    font-size: 15px; color: var(--ink-soft);
+    line-height: 1.85; margin-bottom: 16px;
+  }
+
+  .separator {
+    border: none;
+    border-top: 1px solid var(--cream-dark);
+    margin: 40px 0;
+  }
+
+  .gold-accent { color: var(--gold); font-weight: 700; }
+
+  .alert-box {
+    background: rgba(200,150,62,0.1);
+    border: 1.5px solid rgba(200,150,62,0.3);
+    border-radius: 10px; padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .alert-title {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .alert-body { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+  .alert-body li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar no-print">
+  <span>📖</span>
+  <strong>10 AI Tools · Contract Engineer 2026</strong>
+  <span>|</span>
+  <a href="#toc">Daftar Isi</a>
+  <a href="#tools">10 Tools</a>
+  <a href="#bonus">Bonus Prompts</a>
+</div>
+
+<div class="wrapper">
+
+  <!-- ══════════════ COVER ══════════════ -->
+  <div class="page cover" id="cover">
+    <div class="cover-grid"></div>
+    <div class="cover-content">
+      <div class="cover-badge">Panduan Praktis 2026</div>
+      <div class="cover-eyebrow">Seri Contract Management</div>
+      <h1 class="cover-title">
+        10 <em>AI Tools</em> yang Wajib Dikuasai<br>Contract Engineer
+      </h1>
+      <p class="cover-subtitle">
+        Panduan Praktis untuk Mempermudah Pekerjaan Contract Management — dari Pre-Award hingga Post-Award
+      </p>
+      <div class="cover-divider"></div>
+      <div class="cover-stats">
+        <div>
+          <div class="cover-stat-num">10</div>
+          <div class="cover-stat-label">Tools AI Terpilih</div>
+        </div>
+        <div>
+          <div class="cover-stat-num">40%</div>
+          <div class="cover-stat-label">Hemat Waktu</div>
+        </div>
+        <div>
+          <div class="cover-stat-num">∞</div>
+          <div class="cover-stat-label">Prompt Siap Pakai</div>
+        </div>
+      </div>
+    </div>
+    <div class="cover-author">
+      <div class="author-avatar">B</div>
+      <div>
+        <div class="author-name">Boy</div>
+        <div class="author-info">Contract Engineer · Penulis</div>
+      </div>
+    </div>
+    <div class="cover-year">2026 EDITION</div>
+  </div>
+
+  <!-- ══════════════ DAFTAR ISI ══════════════ -->
+  <div class="page toc-page" id="toc">
+    <div class="toc-header">
+      <div class="toc-label">Navigasi Ebook</div>
+      <div class="toc-title">Daftar Isi</div>
+    </div>
+    <div class="toc-body">
+
+      <div class="toc-section-label">Pendahuluan</div>
+      <div class="toc-item highlight">
+        <a href="#foreword">
+          <span class="toc-item-num">—</span>
+          <span class="toc-item-title">Kata Pengantar</span>
+          <span class="toc-item-dots"></span>
+          <span class="toc-item-page">3</span>
+        </a>
+      </div>
+      <div class="toc-item">
+        <a href="#why">
+          <span class="toc-item-num">—</span>
+          <span class="toc-item-title">Mengapa Contract Engineer Wajib Belajar AI?</span>
+          <span class="toc-item-dots"></span>
+          <span class="toc-item-page">4</span>
+        </a>
+      </div>
+
+      <div class="toc-section-label">10 AI Tools Utama</div>
+      <div class="toc-item"><a href="#tool1"><span class="toc-item-num">01</span><span class="toc-item-title">ChatGPT</span><span class="toc-item-dots"></span><span class="toc-item-page">5</span></a></div>
+      <div class="toc-item"><a href="#tool2"><span class="toc-item-num">02</span><span class="toc-item-title">Microsoft Copilot</span><span class="toc-item-dots"></span><span class="toc-item-page">6</span></a></div>
+      <div class="toc-item"><a href="#tool3"><span class="toc-item-num">03</span><span class="toc-item-title">Notion AI</span><span class="toc-item-dots"></span><span class="toc-item-page">7</span></a></div>
+      <div class="toc-item"><a href="#tool4"><span class="toc-item-num">04</span><span class="toc-item-title">Grammarly</span><span class="toc-item-dots"></span><span class="toc-item-page">8</span></a></div>
+      <div class="toc-item"><a href="#tool5"><span class="toc-item-num">05</span><span class="toc-item-title">Perplexity AI</span><span class="toc-item-dots"></span><span class="toc-item-page">9</span></a></div>
+      <div class="toc-item"><a href="#tool6"><span class="toc-item-num">06</span><span class="toc-item-title">DocuSign AI</span><span class="toc-item-dots"></span><span class="toc-item-page">10</span></a></div>
+      <div class="toc-item"><a href="#tool7"><span class="toc-item-num">07</span><span class="toc-item-title">Canva AI</span><span class="toc-item-dots"></span><span class="toc-item-page">11</span></a></div>
+      <div class="toc-item"><a href="#tool8"><span class="toc-item-num">08</span><span class="toc-item-title">Otter.ai</span><span class="toc-item-dots"></span><span class="toc-item-page">12</span></a></div>
+      <div class="toc-item"><a href="#tool9"><span class="toc-item-num">09</span><span class="toc-item-title">Power BI + AI Features</span><span class="toc-item-dots"></span><span class="toc-item-page">13</span></a></div>
+      <div class="toc-item"><a href="#tool10"><span class="toc-item-num">10</span><span class="toc-item-title">Adobe Acrobat AI Assistant</span><span class="toc-item-dots"></span><span class="toc-item-page">14</span></a></div>
+
+      <div class="toc-section-label">Strategi & Implementasi</div>
+      <div class="toc-item"><a href="#safety"><span class="toc-item-num">—</span><span class="toc-item-title">Cara Menggunakan AI Secara Aman</span><span class="toc-item-dots"></span><span class="toc-item-page">15</span></a></div>
+      <div class="toc-item"><a href="#workflow"><span class="toc-item-num">—</span><span class="toc-item-title">Workflow Ideal Contract Engineer Modern</span><span class="toc-item-dots"></span><span class="toc-item-page">16</span></a></div>
+      <div class="toc-item"><a href="#combo"><span class="toc-item-num">—</span><span class="toc-item-title">Kombinasi Tools AI Paling Powerful</span><span class="toc-item-dots"></span><span class="toc-item-page">17</span></a></div>
+      <div class="toc-item"><a href="#roadmap"><span class="toc-item-num">—</span><span class="toc-item-title">Roadmap Belajar AI (4 Minggu)</span><span class="toc-item-dots"></span><span class="toc-item-page">18</span></a></div>
+
+      <div class="toc-section-label">Bonus</div>
+      <div class="toc-item highlight"><a href="#bonus"><span class="toc-item-num">★</span><span class="toc-item-title">Bonus Prompt Siap Pakai</span><span class="toc-item-dots"></span><span class="toc-item-page">19</span></a></div>
+      <div class="toc-item"><a href="#closing"><span class="toc-item-num">—</span><span class="toc-item-title">Penutup</span><span class="toc-item-dots"></span><span class="toc-item-page">20</span></a></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ KATA PENGANTAR ══════════════ -->
+  <div class="page" id="foreword">
+    <div class="intro-hook">
+      <div class="hook-accent"></div>
+      <div class="hook-quote">
+        "Contract engineer yang memahami AI akan memiliki keunggulan besar dibandingkan yang masih bekerja sepenuhnya manual."
+      </div>
+      <div class="hook-caption">— Prinsip utama ebook ini</div>
+    </div>
+    <div class="intro-body">
+      <p class="intro-lead">
+        Dunia contract management <strong>berubah sangat cepat</strong>. Pekerjaan yang dulu memakan berjam-jam — membaca ratusan halaman dokumen, membuat tabel manual, mengejar approval, memeriksa deviasi kontrak — kini dapat dipercepat drastis dengan Artificial Intelligence.
+      </p>
+      <p class="body-p">
+        AI bukan pengganti contract engineer. AI adalah <strong>"asisten digital"</strong> yang membantu meningkatkan produktivitas, akurasi, kecepatan analisa, dan kualitas komunikasi.
+      </p>
+      <div class="callout-box">
+        <p><strong>Ebook ini dirancang secara praktis. Bukan teori rumit.</strong><br>
+        Anda akan mempelajari tools AI yang paling relevan untuk contract engineer, cara penggunaan praktis, contoh penerapan nyata di proyek, cara AI membantu pre-award dan post-award activity, dan tips implementasi cepat di pekerjaan sehari-hari.</p>
+      </div>
+      <p class="body-p">
+        Target ebook ini sederhana: <strong>Membantu contract engineer bekerja lebih cepat, lebih rapi, lebih strategis, dan lebih profesional.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════ MENGAPA AI? ══════════════ -->
+  <div class="page" id="why">
+    <div class="section-header">
+      <div class="section-number">— Pendahuluan</div>
+      <div class="section-title">Mengapa Contract Engineer<br><em>Wajib Belajar AI?</em></div>
+    </div>
+    <div class="body-content">
+      <p class="body-p">Beberapa tantangan terbesar dalam pekerjaan contract management yang menghabiskan waktu sangat besar:</p>
+      <div class="feature-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))">
+        <div class="feature-item"><span class="feature-icon">📄</span><div class="feature-label">Membaca kontrak ratusan halaman</div></div>
+        <div class="feature-item"><span class="feature-icon">⚖️</span><div class="feature-label">Membandingkan vendor proposal</div></div>
+        <div class="feature-item"><span class="feature-icon">🗒️</span><div class="feature-label">Membuat summary meeting</div></div>
+        <div class="feature-item"><span class="feature-icon">📊</span><div class="feature-label">Tracking progress contract</div></div>
+        <div class="feature-item"><span class="feature-icon">✉️</span><div class="feature-label">Menyusun korespondensi formal</div></div>
+        <div class="feature-item"><span class="feature-icon">⚠️</span><div class="feature-label">Membuat risk register</div></div>
+        <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-label">Mengontrol variation order</div></div>
+        <div class="feature-item"><span class="feature-icon">⚡</span><div class="feature-label">Mengelola claim & dispute</div></div>
+        <div class="feature-item"><span class="feature-icon">📑</span><div class="feature-label">Menyiapkan laporan berkala</div></div>
+        <div class="feature-item"><span class="feature-icon">✅</span><div class="feature-label">Mengecek compliance kontrak</div></div>
+      </div>
+      <div class="alert-box">
+        <div class="alert-title">✦ Fakta Kunci</div>
+        <div class="alert-body">
+          AI dapat <strong>memangkas waktu pekerjaan hingga <span class="gold-accent">40% sampai 70%</span></strong> jika digunakan dengan benar. Bukan untuk mengganti, tapi untuk mempercepat setiap aspek contract management.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 1: ChatGPT ══════════════ -->
+  <div class="page tool-page" id="tool1">
+    <div class="tool-header">
+      <div class="tool-number">01</div>
+      <div class="tool-badge">Tool #01</div>
+      <h2 class="tool-name">ChatGPT</h2>
+      <p class="tool-tagline">Asisten AI serbaguna untuk analisa, komunikasi, dan pekerjaan contract management harian</p>
+      <a href="https://chatgpt.com" class="tool-link" target="_blank">chatgpt.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">✉️</span><div class="feature-label">Draft Email Profesional</div></div>
+        <div class="feature-item"><span class="feature-icon">📋</span><div class="feature-label">Summary Kontrak</div></div>
+        <div class="feature-item"><span class="feature-icon">🔍</span><div class="feature-label">Analisa Clause</div></div>
+        <div class="feature-item"><span class="feature-icon">🗒️</span><div class="feature-label">Meeting Minutes</div></div>
+        <div class="feature-item"><span class="feature-icon">⚠️</span><div class="feature-label">Risk Analysis</div></div>
+        <div class="feature-item"><span class="feature-icon">🤝</span><div class="feature-label">Strategi Negosiasi</div></div>
+      </div>
+      <h3 class="body-h3">Contoh Prompt Praktis</h3>
+      <div class="prompt-card">
+        <div class="prompt-label">📝 Contoh 1 — Summary Kontrak</div>
+        <div class="prompt-text">"Buat ringkasan kontrak EPC berikut dalam bentuk poin penting meliputi scope, payment term, LD, warranty, dan termination."</div>
+        <div class="prompt-result">→ Dalam beberapa detik, AI membuat summary yang biasanya membutuhkan waktu berjam-jam.</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-label">✉️ Contoh 2 — Draft Email Profesional</div>
+        <div class="prompt-text">"Buat email formal kepada vendor terkait keterlambatan pengiriman material dengan tone profesional dan tetap menjaga hubungan baik."</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-label">⚠️ Contoh 3 — Analisa Risiko Kontrak</div>
+        <div class="prompt-text">"Analisa potensi risiko dari clause liquidated damages berikut dan berikan rekomendasi mitigasi."</div>
+      </div>
+      <h3 class="body-h3">Manfaat untuk Contract Engineer</h3>
+      <div class="benefit-row">
+        <span class="benefit-tag">Hemat waktu administrasi</span>
+        <span class="benefit-tag">Berpikir lebih strategis</span>
+        <span class="benefit-tag">Review dokumen lebih cepat</span>
+        <span class="benefit-tag">Komunikasi profesional</span>
+      </div>
+      <div class="callout-box"><p><strong>💡 Tips:</strong> Gunakan prompt yang spesifik. Semakin detail instruksi, semakin bagus hasil AI.</p></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 2: Microsoft Copilot ══════════════ -->
+  <div class="page tool-page" id="tool2">
+    <div class="tool-header">
+      <div class="tool-number">02</div>
+      <div class="tool-badge">Tool #02</div>
+      <h2 class="tool-name">Microsoft Copilot</h2>
+      <p class="tool-tagline">AI terintegrasi penuh dengan ekosistem Microsoft Office — senjata utama contract engineer</p>
+      <a href="https://copilot.microsoft.com" class="tool-link" target="_blank">copilot.microsoft.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Integrasi dengan Microsoft Office</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📊</span><div class="feature-label">Excel — Formula & Dashboard Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">📄</span><div class="feature-label">Word — Draft & Executive Summary</div></div>
+        <div class="feature-item"><span class="feature-icon">📧</span><div class="feature-label">Outlook — Balas Email Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">👥</span><div class="feature-label">Teams — Meeting Summary</div></div>
+        <div class="feature-item"><span class="feature-icon">📐</span><div class="feature-label">PowerPoint — Slide Profesional</div></div>
+      </div>
+      <h3 class="body-h3">Penggunaan Praktis di Excel</h3>
+      <div class="prompt-card">
+        <div class="prompt-label">📊 Excel — Analisa Keterlambatan Vendor</div>
+        <div class="prompt-text">"Buat analisa keterlambatan vendor berdasarkan data delivery berikut."</div>
+        <div class="prompt-result">→ Copilot membuat formula otomatis, grafik, dan dashboard progress contract</div>
+      </div>
+      <h3 class="body-h3">Manfaat</h3>
+      <div class="benefit-row">
+        <span class="benefit-tag">Pekerjaan administrasi lebih cepat</span>
+        <span class="benefit-tag">Mengurangi kesalahan manual</span>
+        <span class="benefit-tag">Laporan profesional</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 3: Notion AI ══════════════ -->
+  <div class="page tool-page" id="tool3">
+    <div class="tool-header">
+      <div class="tool-number">03</div>
+      <div class="tool-badge">Tool #03</div>
+      <h2 class="tool-name">Notion AI</h2>
+      <p class="tool-tagline">Knowledge management dan project tracking cerdas untuk tim contract management</p>
+      <a href="https://www.notion.so/product/ai" class="tool-link" target="_blank">notion.so/product/ai</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📓</span><div class="feature-label">Catatan Proyek Terstruktur</div></div>
+        <div class="feature-item"><span class="feature-icon">🗒️</span><div class="feature-label">Meeting Minutes Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">✅</span><div class="feature-label">Action Tracker</div></div>
+        <div class="feature-item"><span class="feature-icon">🗄️</span><div class="feature-label">Database Kontrak</div></div>
+      </div>
+      <h3 class="body-h3">Meeting Minutes Otomatis</h3>
+      <p class="body-p">Upload hasil meeting atau catatan kasar. Notion AI membuat ringkasan meeting, action item, PIC, dan due date secara otomatis.</p>
+      <h3 class="body-h3">Contract Knowledge Base</h3>
+      <p class="body-p">Buat database terstruktur: vendor list, contract status, amendment history, claim tracker — semua dalam satu platform.</p>
+      <div class="benefit-row">
+        <span class="benefit-tag">Data lebih rapi</span>
+        <span class="benefit-tag">Tidak kehilangan informasi</span>
+        <span class="benefit-tag">Koordinasi tim mudah</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 4: Grammarly ══════════════ -->
+  <div class="page tool-page" id="tool4">
+    <div class="tool-header">
+      <div class="tool-number">04</div>
+      <div class="tool-badge">Tool #04</div>
+      <h2 class="tool-name">Grammarly</h2>
+      <p class="tool-tagline">AI peningkat kualitas bahasa Inggris profesional untuk korespondensi kontrak kelas dunia</p>
+      <a href="https://www.grammarly.com" class="tool-link" target="_blank">grammarly.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">✍️</span><div class="feature-label">Koreksi Grammar Real-time</div></div>
+        <div class="feature-item"><span class="feature-icon">🎯</span><div class="feature-label">Tone Profesional</div></div>
+        <div class="feature-item"><span class="feature-icon">📝</span><div class="feature-label">Contract Correspondence</div></div>
+        <div class="feature-item"><span class="feature-icon">📋</span><div class="feature-label">Proposal Writing</div></div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-label">✍️ Contoh Perbaikan</div>
+        <div class="prompt-text">"Please kindly be informed that…"</div>
+        <div class="prompt-result">→ Grammarly memperbaiki struktur bahasa agar lebih natural dan profesional secara otomatis saat Anda mengetik</div>
+      </div>
+      <div class="benefit-row">
+        <span class="benefit-tag">Profesionalisme komunikasi meningkat</span>
+        <span class="benefit-tag">Mengurangi kesalahan grammar</span>
+        <span class="benefit-tag">Lebih percaya diri berbahasa Inggris</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 5: Perplexity AI ══════════════ -->
+  <div class="page tool-page" id="tool5">
+    <div class="tool-header">
+      <div class="tool-number">05</div>
+      <div class="tool-badge">Tool #05</div>
+      <h2 class="tool-name">Perplexity AI</h2>
+      <p class="tool-tagline">Mesin riset berbasis internet real-time untuk contract engineer yang selalu update regulasi terbaru</p>
+      <a href="https://www.perplexity.ai" class="tool-link" target="_blank">perplexity.ai</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📚</span><div class="feature-label">Riset FIDIC & Standar Kontrak</div></div>
+        <div class="feature-item"><span class="feature-icon">⚖️</span><div class="feature-label">Riset Regulasi Procurement</div></div>
+        <div class="feature-item"><span class="feature-icon">💰</span><div class="feature-label">Benchmark Harga & Market Rate</div></div>
+        <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-label">Update Regulasi Proyek</div></div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-label">📚 Contoh Riset FIDIC</div>
+        <div class="prompt-text">"Jelaskan perbedaan FIDIC Red Book dan Yellow Book dalam EPC project."</div>
+        <div class="prompt-result">→ AI mencari dan merangkum referensi terbaru dari internet secara real-time</div>
+      </div>
+      <div class="benefit-row">
+        <span class="benefit-tag">Riset lebih cepat</span>
+        <span class="benefit-tag">Referensi terbaru</span>
+        <span class="benefit-tag">Belajar contract management</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 6: DocuSign AI ══════════════ -->
+  <div class="page tool-page" id="tool6">
+    <div class="tool-header">
+      <div class="tool-number">06</div>
+      <div class="tool-badge">Tool #06</div>
+      <h2 class="tool-name">DocuSign AI</h2>
+      <p class="tool-tagline">Digitalisasi penuh workflow approval dan contract tracking — paperless dari tanda tangan hingga audit trail</p>
+      <a href="https://www.docusign.com" class="tool-link" target="_blank">docusign.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">✍️</span><div class="feature-label">Digital Signature</div></div>
+        <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-label">Contract Workflow</div></div>
+        <div class="feature-item"><span class="feature-icon">✅</span><div class="feature-label">Approval Process Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">📍</span><div class="feature-label">Tracking Dokumen</div></div>
+      </div>
+      <h3 class="body-h3">Workflow Approval Otomatis</h3>
+      <p class="body-p">Dokumen otomatis dikirim ke approver, diingatkan jika terlambat, dan histori approval tercatat lengkap.</p>
+      <h3 class="body-h3">Contract Tracking</h3>
+      <p class="body-p">Mengetahui siapa yang belum approve, status kontrak real-time, dan tidak ada lagi dokumen yang hilang.</p>
+      <div class="benefit-row">
+        <span class="benefit-tag">Paperless workflow</span>
+        <span class="benefit-tag">Approval lebih cepat</span>
+        <span class="benefit-tag">Audit trail rapi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 7: Canva AI ══════════════ -->
+  <div class="page tool-page" id="tool7">
+    <div class="tool-header">
+      <div class="tool-number">07</div>
+      <div class="tool-badge">Tool #07</div>
+      <h2 class="tool-name">Canva AI</h2>
+      <p class="tool-tagline">Desain presentasi dan infografis profesional tanpa keahlian desain — impress management setiap rapat</p>
+      <a href="https://www.canva.com" class="tool-link" target="_blank">canva.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📐</span><div class="feature-label">Presentasi Proyek Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">📊</span><div class="feature-label">Infografis Kontrak</div></div>
+        <div class="feature-item"><span class="feature-icon">📈</span><div class="feature-label">Dashboard Visual</div></div>
+        <div class="feature-item"><span class="feature-icon">📋</span><div class="feature-label">Proposal Visual</div></div>
+      </div>
+      <h3 class="body-h3">Contoh Infografis yang Bisa Dibuat</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-label">Contract Lifecycle</div></div>
+        <div class="feature-item"><span class="feature-icon">🛒</span><div class="feature-label">Procurement Flow</div></div>
+        <div class="feature-item"><span class="feature-icon">⚡</span><div class="feature-label">Claim Process</div></div>
+        <div class="feature-item"><span class="feature-icon">⏱️</span><div class="feature-label">Visual Timeline Proyek</div></div>
+      </div>
+      <div class="benefit-row">
+        <span class="benefit-tag">Presentasi lebih menarik</span>
+        <span class="benefit-tag">Profesionalisme meningkat</span>
+        <span class="benefit-tag">Komunikasi ke manajemen mudah</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 8: Otter.ai ══════════════ -->
+  <div class="page tool-page" id="tool8">
+    <div class="tool-header">
+      <div class="tool-number">08</div>
+      <div class="tool-badge">Tool #08</div>
+      <h2 class="tool-name">Otter.ai</h2>
+      <p class="tool-tagline">Transkripsi dan ringkasan meeting otomatis — tidak ada lagi miss communication atau catatan yang terlewat</p>
+      <a href="https://otter.ai" class="tool-link" target="_blank">otter.ai</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">🎙️</span><div class="feature-label">Transkripsi Meeting Real-time</div></div>
+        <div class="feature-item"><span class="feature-icon">🔴</span><div class="feature-label">Recording Meeting Otomatis</div></div>
+        <div class="feature-item"><span class="feature-icon">📋</span><div class="feature-label">Summary Meeting Instan</div></div>
+        <div class="feature-item"><span class="feature-icon">✅</span><div class="feature-label">Action Items Otomatis</div></div>
+      </div>
+      <h3 class="body-h3">Cara Kerja</h3>
+      <p class="body-p">Saat meeting, AI merekam percakapan, membuat transkrip otomatis, dan langsung menghasilkan summary beserta action items — tanpa perlu mencatat satu kata pun secara manual.</p>
+      <div class="benefit-row">
+        <span class="benefit-tag">Tidak perlu mencatat manual</span>
+        <span class="benefit-tag">Mengurangi miss communication</span>
+        <span class="benefit-tag">Meeting minutes lebih cepat</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 9: Power BI ══════════════ -->
+  <div class="page tool-page" id="tool9">
+    <div class="tool-header">
+      <div class="tool-number">09</div>
+      <div class="tool-badge">Tool #09</div>
+      <h2 class="tool-name">Power BI + AI Features</h2>
+      <p class="tool-tagline">Dashboard visualisasi data contract management yang memudahkan pengambilan keputusan berbasis data</p>
+      <a href="https://powerbi.microsoft.com" class="tool-link" target="_blank">powerbi.microsoft.com</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Dashboard yang Bisa Dibuat</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📊</span><div class="feature-label">Contract Status Dashboard</div></div>
+        <div class="feature-item"><span class="feature-icon">⭐</span><div class="feature-label">Vendor Performance</div></div>
+        <div class="feature-item"><span class="feature-icon">🛒</span><div class="feature-label">Procurement Progress</div></div>
+        <div class="feature-item"><span class="feature-icon">⚡</span><div class="feature-label">Claim Monitoring</div></div>
+        <div class="feature-item"><span class="feature-icon">💰</span><div class="feature-label">Budget vs Actual</div></div>
+        <div class="feature-item"><span class="feature-icon">⏰</span><div class="feature-label">Aging Contract</div></div>
+      </div>
+      <div class="benefit-row">
+        <span class="benefit-tag">Monitoring lebih cepat</span>
+        <span class="benefit-tag">Pengambilan keputusan berbasis data</span>
+        <span class="benefit-tag">Mudah dipahami manajemen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOOL 10: Adobe Acrobat AI ══════════════ -->
+  <div class="page tool-page" id="tool10">
+    <div class="tool-header">
+      <div class="tool-number">10</div>
+      <div class="tool-badge">Tool #10</div>
+      <h2 class="tool-name">Adobe Acrobat AI Assistant</h2>
+      <p class="tool-tagline">Membaca dan memahami kontrak PDF panjang dalam hitungan detik — tidak ada lagi clause yang terlewat</p>
+      <a href="https://www.adobe.com/acrobat/ai-assistant.html" class="tool-link" target="_blank">adobe.com/acrobat/ai-assistant</a>
+    </div>
+    <div class="tool-body">
+      <h3 class="body-h3">Fungsi Utama</h3>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-icon">📖</span><div class="feature-label">Summary Kontrak PDF</div></div>
+        <div class="feature-item"><span class="feature-icon">💬</span><div class="feature-label">Tanya Jawab Isi Kontrak</div></div>
+        <div class="feature-item"><span class="feature-icon">🔍</span><div class="feature-label">Menemukan Clause Tertentu</div></div>
+        <div class="feature-item"><span class="feature-icon">⚖️</span><div class="feature-label">Membandingkan Dokumen</div></div>
+      </div>
+      <h3 class="body-h3">Contoh Pertanyaan ke AI</h3>
+      <div class="prompt-card">
+        <div class="prompt-label">💬 Upload PDF Kontrak, lalu tanya:</div>
+        <div class="prompt-text">"Apa isi payment term dalam kontrak ini?"<br><br>"Apakah ada clause terkait liquidated damages?"</div>
+        <div class="prompt-result">→ AI menjawab dalam detik, lengkap dengan referensi halaman</div>
+      </div>
+      <div class="benefit-row">
+        <span class="benefit-tag">Review kontrak jauh lebih cepat</span>
+        <span class="benefit-tag">Tidak ada clause yang terlewat</span>
+        <span class="benefit-tag">Review kontrak kompleks mudah</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ KEAMANAN AI ══════════════ -->
+  <div class="page" id="safety">
+    <div class="section-header">
+      <div class="section-number">— Panduan Keamanan</div>
+      <div class="section-title">Cara Menggunakan AI<br><em>Secara Aman</em></div>
+    </div>
+    <div class="body-content">
+      <div class="alert-box">
+        <div class="alert-title">⚠️ Jangan Upload Data Sangat Sensitif</div>
+        <div class="alert-body">
+          <ul style="list-style: none; padding: 0;">
+            <li>✗ Data rahasia perusahaan</li>
+            <li>✗ Harga tender yang bersifat confidential</li>
+            <li>✗ Password dan credential</li>
+            <li>✗ Informasi sensitif proyek yang belum dipublikasi</li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="body-h3">Selalu Review Hasil AI</h3>
+      <p class="body-p">AI membantu mempercepat pekerjaan. Namun <strong>keputusan akhir tetap tanggung jawab manusia</strong>. Jangan langsung kirim output AI tanpa direview terlebih dahulu.</p>
+      <div class="callout-box">
+        <p><strong>Gunakan AI sebagai asisten, bukan pengganti professional judgment.</strong><br>
+        Contract engineer tetap harus memahami kontrak, memahami risiko, memahami strategi bisnis, dan memahami regulasi yang berlaku.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ WORKFLOW ══════════════ -->
+  <div class="page" id="workflow">
+    <div class="section-header">
+      <div class="section-number">— Strategi Implementasi</div>
+      <div class="section-title">Workflow Ideal<br><em>Contract Engineer Modern</em></div>
+    </div>
+    <div class="body-content">
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <div class="workflow-card-header pre">⬆️ Pre-Award — Menggunakan AI untuk:</div>
+          <div class="workflow-card-body">
+            <div class="workflow-item">Summary tender document</div>
+            <div class="workflow-item">Membuat bidder clarification</div>
+            <div class="workflow-item">Analisa risiko kontrak</div>
+            <div class="workflow-item">Benchmark harga</div>
+            <div class="workflow-item">Membuat tender report</div>
+            <div class="workflow-item">Evaluasi vendor</div>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-card-header post">⬇️ Post-Award — Menggunakan AI untuk:</div>
+          <div class="workflow-card-body">
+            <div class="workflow-item">Progress tracking</div>
+            <div class="workflow-item">Meeting minutes otomatis</div>
+            <div class="workflow-item">Contract correspondence</div>
+            <div class="workflow-item">Claim analysis</div>
+            <div class="workflow-item">Amendment tracking</div>
+            <div class="workflow-item">Dashboard reporting</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ KOMBINASI TOOLS ══════════════ -->
+  <div class="page" id="combo">
+    <div class="section-header">
+      <div class="section-number">— Power User Strategy</div>
+      <div class="section-title">Kombinasi Tools AI<br><em>Paling Powerful</em></div>
+    </div>
+    <div class="body-content">
+      <div class="combo-grid">
+        <div class="combo-card">
+          <div class="combo-num">Kombinasi 01</div>
+          <div class="combo-tools">ChatGPT <span class="combo-plus">+</span> Grammarly <span class="combo-plus">+</span> Copilot</div>
+          <div class="combo-desc">Cocok untuk: draft email, laporan, surat resmi, dan contract review. Trio terbaik untuk komunikasi sehari-hari.</div>
+        </div>
+        <div class="combo-card">
+          <div class="combo-num">Kombinasi 02</div>
+          <div class="combo-tools">Notion AI <span class="combo-plus">+</span> Otter AI</div>
+          <div class="combo-desc">Cocok untuk: meeting management, action tracker, dan project coordination. Tidak ada informasi yang terlewat.</div>
+        </div>
+        <div class="combo-card">
+          <div class="combo-num">Kombinasi 03</div>
+          <div class="combo-tools">Power BI <span class="combo-plus">+</span> Copilot</div>
+          <div class="combo-desc">Cocok untuk: dashboard management, data analysis, dan executive reporting yang memukau manajemen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ROADMAP ══════════════ -->
+  <div class="page" id="roadmap">
+    <div class="section-header">
+      <div class="section-number">— 4 Minggu Transformasi</div>
+      <div class="section-title">Roadmap Belajar AI<br><em>untuk Contract Engineer</em></div>
+    </div>
+    <div class="body-content">
+      <div class="roadmap">
+        <div class="roadmap-week">
+          <div class="week-label">Minggu 1 — Fondasi</div>
+          <ul class="week-tools">
+            <li>ChatGPT</li>
+            <li>Grammarly</li>
+            <li>Perplexity AI</li>
+          </ul>
+        </div>
+        <div class="roadmap-week">
+          <div class="week-label">Minggu 2 — Produktivitas</div>
+          <ul class="week-tools">
+            <li>Copilot</li>
+            <li>Canva AI</li>
+            <li>Otter AI</li>
+          </ul>
+        </div>
+        <div class="roadmap-week">
+          <div class="week-label">Minggu 3 — Data & Knowledge</div>
+          <ul class="week-tools">
+            <li>Power BI</li>
+            <li>Notion AI</li>
+          </ul>
+        </div>
+        <div class="roadmap-week">
+          <div class="week-label">Minggu 4 — Integrasi</div>
+          <ul class="week-tools">
+            <li>Integrasi workflow</li>
+            <li>Automation harian</li>
+            <li>Personal productivity system</li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="body-h3">Skill Baru yang Dicari Perusahaan</h3>
+      <div class="skills-grid">
+        <div class="skill-item"><div class="skill-icon">🤖</div><div class="skill-text">Menggunakan AI dalam pekerjaan sehari-hari</div></div>
+        <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-text">Mengelola dan menganalisa data kontrak</div></div>
+        <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-text">Membuat dashboard monitoring</div></div>
+        <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-text">Membuat analisa cepat berbasis data</div></div>
+        <div class="skill-item"><div class="skill-icon">💬</div><div class="skill-text">Berkomunikasi efektif secara tertulis</div></div>
+        <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-text">Mengambil keputusan berbasis data</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ BONUS PROMPTS ══════════════ -->
+  <div class="page" id="bonus">
+    <div class="section-header">
+      <div class="section-number">— Bonus Eksklusif</div>
+      <div class="section-title">★ Prompt Siap Pakai<br><em>untuk Contract Engineer</em></div>
+    </div>
+    <div class="body-content">
+      <div class="prompt-list">
+        <div class="prompt-block">
+          <div class="prompt-block-header">📋 Prompt Summary Kontrak</div>
+          <div class="prompt-block-body">"Buat ringkasan kontrak berikut meliputi scope, duration, payment term, LD, warranty, insurance, dan termination."</div>
+        </div>
+        <div class="prompt-block">
+          <div class="prompt-block-header">✉️ Prompt Draft Email</div>
+          <div class="prompt-block-body">"Buat email profesional kepada vendor terkait keterlambatan pekerjaan dengan tone tegas namun tetap profesional."</div>
+        </div>
+        <div class="prompt-block">
+          <div class="prompt-block-header">⚠️ Prompt Analisa Risiko</div>
+          <div class="prompt-block-body">"Analisa risiko dari clause berikut dan berikan mitigasi yang dapat dilakukan owner."</div>
+        </div>
+        <div class="prompt-block">
+          <div class="prompt-block-header">🗒️ Prompt Meeting Minutes</div>
+          <div class="prompt-block-body">"Buat meeting minutes profesional dari catatan meeting berikut lengkap dengan action item dan PIC."</div>
+        </div>
+        <div class="prompt-block">
+          <div class="prompt-block-header">⚡ Prompt Claim Analysis</div>
+          <div class="prompt-block-body">"Analisa potensi entitlement contractor berdasarkan kronologi berikut."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PENUTUP ══════════════ -->
+  <div class="page closing-page" id="closing">
+    <div class="closing-body">
+      <h2 class="closing-headline">
+        AI Bukan Ancaman.<br><em>Ketidaktahuan</em> yang Berbahaya.
+      </h2>
+      <p class="closing-text">
+        Ancaman sebenarnya adalah ketika engineer lain sudah menggunakan AI sementara kita masih bekerja sepenuhnya manual. Mulailah dari satu tools. Gunakan setiap hari. Setelah terbiasa, tambahkan tools berikutnya.
+      </p>
+      <div class="closing-pills">
+        <div class="closing-pill">Bekerja Lebih Cepat</div>
+        <div class="closing-pill">Lebih Produktif</div>
+        <div class="closing-pill">Lebih Strategis</div>
+        <div class="closing-pill">Lebih Profesional</div>
+        <div class="closing-pill">Lebih Bernilai</div>
+      </div>
+      <p class="closing-text" style="font-size:16px; margin-bottom: 24px;">
+        Dalam beberapa bulan, cara kerja Anda akan berubah drastis. Dan kemungkinan besar, karier Anda juga ikut meningkat.
+      </p>
+      <div class="closing-footer">
+        <div>
+          <div class="closing-footer-title">10 AI Tools yang Wajib Dikuasai Contract Engineer</div>
+          <div class="closing-footer-left" style="margin-top:8px;">Panduan Praktis untuk Mempermudah Pekerjaan Contract Management</div>
+          <div class="closing-footer-left" style="margin-top:4px;">© 2026 · Ditulis oleh Boy</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:rgba(200,150,62,0.3); line-height:1;">AI</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Contract Engineer 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end wrapper -->
+
+</body>
+</html>
